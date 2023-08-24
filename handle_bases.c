@@ -2,97 +2,128 @@
 #include <stdio.h>
 /**
  * printUnsigned - Prints an unsigned integer to the standard output.
- * @number: The unsigned integer to be printed.
+ * @args: The unsigned integer to be printed.
+ * @flag: flags to add
  * @size: Pointer to track the number of characters printed.
  * Return: Nothing
  */
-void printUnsigned(unsigned int number, int *size)
+void printUnsigned(va_list args, int *flag, int *size)
 {
-	if (number > 9)
+	unsigned int unumber, i, f_plus = 0, f_space = 0;
+
+	for (i = 0; flag[i] < 2; i++)
 	{
-		printUnsigned(number / 10, size);
+		if (flag[i] == 1)
+			f_plus = 1;
+		else if (flag[i] == 2)
+			f_space = 1;
 	}
-	_putchar('0' + number % 10, size);
+	if (f_plus)
+		_putchar('+', size);
+	else if (f_space)
+		_putchar(' ', size);
+	printUnsigned(unumber, flag, size);
+	if (unumber > 9)
+	{
+		printUnsigned(unumber / 10, flag, size);
+	}
+	_putchar('0' + unumber % 10, size);
 }
 /**
  * printOctal - Prints an unsigned integer in octal format.
- * @number: The unsigned integer to be printed in octal.
+ * @args: The unsigned integer to be printed in octal.
+ * @flag: flags to add
  * @size: Pointer to track the number of characters printed.
  * Return: Nothing.
  */
-void printOctal(unsigned int number, int *size)
+void printOctal(va_list args, int *flag, int *size)
 {
-	if (number > 7)
+	unsigned int unumber, i, f_hash = 0;
+
+	for (i = 0; flag[i] < 2; i++)
 	{
-		printOctal(number / 8, size);
+		if (flag[i] == 3)
+			f_hash = 1;
 	}
-	_putchar('0' + number % 8, size);
+	if (f_hash)
+		_putchar('0', size);
+	unumber = va_arg(args, unsigned int);
+	if (unumber > 7)
+	{
+		printOctal(unumber / 8, flag, size);
+	}
+	_putchar('0' + unumber % 8, size);
 }
 /**
- * printHex - Prints an unsigned integer in hexadecimal format.
- * @number: The unsigned integer to be printed in hexadecimal.
- * @n: A flag indicating whether to print uppercase (n = 0)
- * or lowercase (n = 1) letters.
+ * printHexUpper - Prints an unsigned integer in hexadecimal format.
+ * @args: The unsigned integer to be printed in hexadecimal.
+ * @flag: flags to add
  * @size: Pointer to track the number of characters printed.
  * Return: Nothing.
  */
-void printHex(unsigned int number, int n, int *size)
+void printHexUpper(va_list args, int *flag, int *size)
 {
-	if (number > 15)
+	unsigned int unumber, i, f_hash = 0;
+
+	for (i = 0; flag[i] < 2; i++)
 	{
-		printHex(number / 16, n, size);
+		if (flag[i] == 3)
+			f_hash = 1;
 	}
-	hexChar(number % 16, n, size);
+	if (f_hash)
+	{
+		_putchar('0', size);
+		_putchar('X', size);
+	}
+	unumber = va_arg(args, unsigned int);
+	if (unumber > 15)
+	{
+		printHex(unumber / 16, size);
+	}
+	hexChar(unumber % 16, size, 0);
+}
+/**
+ * printHexUpper - Prints an unsigned integer in hexadecimal format.
+ * @args: The unsigned integer to be printed in hexadecimal.
+ * @flag: flags to add
+ * @size: Pointer to track the number of characters printed.
+ * Return: Nothing.
+ */
+void printHexLower(va_list args, int *flag, int *size)
+{
+	unsigned int unumber, i, f_hash = 0;
+
+	for (i = 0; flag[i] < 2; i++)
+	{
+		if (flag[i] == 3)
+			f_hash = 1;
+	}
+	if (f_hash)
+	{
+		_putchar('0', size);
+		_putchar('x', size);
+	}
+	unumber = va_arg(args, unsigned int);
+	if (unumber > 15)
+	{
+		printHex(unumber / 16, size);
+	}
+	hexChar(unumber % 16, size, 1);
 }
 /**
  * hexChar - Prints a hexadecimal character based on the input value.
  * @hex: The hexadecimal value (0 to 15) to be printed as a character.
- * @n: A flag indicating whether to print uppercase (n = 0)
- * or lowercase (n = 1) letters.
  * @size: Pointer to track the number of characters printed.
+ * @isLower: flag indicating whether to print uppercase or lowercase letters.
  * Return: Nothing.
  */
-void hexChar(unsigned int hex, int n, int *size)
+void hexChar(unsigned int hex, int *size, int isLower)
 {
-	switch (hex)
-	{
-	case 10:
-		if (n == 0)
-			_putchar('A', size);
-		else
-			_putchar('a', size);
-		break;
-	case 11:
-		if (n == 0)
-			_putchar('B', size);
-		else
-			_putchar('b', size);
-		break;
-	case 12:
-		if (n == 0)
-			_putchar('C', size);
-		else
-			_putchar('c', size);
-		break;
-	case 13:
-		if (n == 0)
-			_putchar('D', size);
-		else
-			_putchar('d', size);
-		break;
-	case 14:
-		if (n == 0)
-			_putchar('E', size);
-		else
-			_putchar('e', size);
-		break;
-	case 15:
-		if (n == 0)
-			_putchar('F', size);
-		else
-			_putchar('f', size);
-		break;
-	default:
-		_putchar('0' + hex, size);
-	}
+	char hexCharsU[] = "0123456789ABCDEF";
+	char hexCharsL[] = "0123456789abcdef";
+
+	if (isLower == 0)
+		_putchar(hexCharsU[hex], size);
+	else
+		_putchar(hexCharsL[hex], size);
 }
