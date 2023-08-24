@@ -5,46 +5,6 @@
 
   <div data-react-class="projects/ProjectMetadata" data-react-props="{&quot;metadata&quot;:{&quot;author&quot;:&quot;Julien Barbier, co-founder \u0026 CEO&quot;,&quot;weight&quot;:5,&quot;correction&quot;:{&quot;released&quot;:true,&quot;auto_correction_available_at&quot;:&quot;2023-08-19T12:00:00.000+03:00&quot;,&quot;requires_auto_correction&quot;:true,&quot;requires_manual_correction&quot;:false},&quot;bpi&quot;:{&quot;current&quot;:true,&quot;started&quot;:false,&quot;in_second_deadline&quot;:false,&quot;starts_at&quot;:&quot;2023-08-18T06:00:00.000+03:00&quot;,&quot;ends_at&quot;:&quot;2023-08-23T06:00:00.000+03:00&quot;,&quot;second_deadline_at&quot;:&quot;2023-08-26T06:00:00.000+03:00&quot;},&quot;team&quot;:{&quot;in_team_of&quot;:2,&quot;members&quot;:[&quot;Mehdi AIT ITTO&quot;,&quot;Imad Yahyaoui&quot;]}}}" data-react-cache-id="projects/ProjectMetadata-0"></div>
 
-
-
-
-    
-
-
-    <div id="project_id" style="display: none" data-project-id="228"></div>
-
-
-
-      
-
-        <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Concepts</h3>
-    </div>
-    <div class="panel-body">
-      <p>
-        <em>For this project, we expect you to look at these concepts:</em>
-      </p>
-
-      <ul>
-          <li>
-            <a href="/concepts/111">Group Projects</a>
-          </li>
-          <li>
-            <a href="/concepts/121">Pair Programming - How To</a>
-          </li>
-          <li>
-            <a href="/concepts/130">Flowcharts</a>
-          </li>
-          <li>
-            <a href="/concepts/225">Technical Writing</a>
-          </li>
-      </ul>
-    </div>
-  </div>
-
-
-      <div class="panel panel-default" id="project-description">
   <div class="panel-body">
     <h2>Background Context</h2>
 
