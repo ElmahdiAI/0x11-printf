@@ -1,62 +1,42 @@
 #include "main.h"
 #include <stdio.h>
 /**
- * printChar - Prints a char to the standard output.
- * @args: The string to be printed.
- * @flag: array of flags
- * @size: Pointer to track the number of characters printed.
- * Return: Nothing.
- */
-void printChar(va_list args, int *flag, int *size)
-{
-	char c = va_arg(args, int);
-	_putchar(c, size);
-}
-/**
  * printStr - Prints a string to the standard output.
- * @args: The string to be printed.
- * @flag: array of flags
+ * @str: The string to be printed.
  * @size: Pointer to track the number of characters printed.
  * Return: Nothing.
  */
-void printStr(va_list args, int *flag, int *size)
+void printStr(char *str, int *size)
 {
-	char *store;
-
-	store = va_arg(args, char *);
-	if (store != NULL)
+	if (str != NULL)
 	{
-		while (*store)
+		while (*str)
 		{
-			_putchar(*store, size);
-			store++;
+			_putchar(*str, size);
+			str++;
 		}
 	}
 }
 /**
  * NonPrintableChar - Prints a string with non-printable characters formatted.
- * @args: The string to be printed.
- * @flag: array of flags
+ * @str: The string to be printed.
  * @size: Pointer to track the number of characters printed.
  * Return: Nothing.
  */
-void NonPrintableChar(va_list args, int *flag, int *size)
+void NonPrintableChar(char *str, int *size)
 {
-	char *store;
-
-	store = va_arg(args, char *);
-	while (*store)
+	while (*str)
 	{
-		if (*store < 32 || *store >= 127)
+		if (*str < 32 || *str >= 127)
 		{
 			_putchar('\\', size);
 			_putchar('x', size);
-			printHex(*store, 0, size);
+			printHex(*str, 0, size);
 		}
 		else
 		{
-			_putchar(*store, size);
+			_putchar(*str, size);
 		}
-		store++;
+		str++;
 	}
 }
