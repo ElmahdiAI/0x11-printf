@@ -7,56 +7,28 @@
  * @size: Pointer to track the number of characters printed.
  * Return: Nothing.
  */
-void handleFormat(char format, va_list args, int *size)
+void handleFormat(char format, void *args, int *size)
 {
-	int number;
-	unsigned int unumber;
-	char *store;
-
-	switch (format)
-	{
-	case 'c':
-		_putchar(va_arg(args, int), size);
-		break;
-	case 's':
-		store = va_arg(args, char *);
-		printStr(store, size);
-		break;
-	case '%':
+	if (format == 'c')
+		_putchar((int)args, size);
+	else if (format == 's')
+		printStr((char *)args, size);
+	else if (format == '%')
 		_putchar('%', size);
-		break;
-	case 'd':
-	case 'i':
-		number = va_arg(args, int);
-		printInteger(number, size);
-		break;
-	case 'b':
-		unumber = va_arg(args, unsigned int);
-		printBinary(unumber, size);
-		break;
-	case 'u':
-		unumber = va_arg(args, unsigned int);
-		printUnsigned(unumber, size);
-		break;
-	case 'o':
-		unumber = va_arg(args, unsigned int);
-		printOctal(unumber, size);
-		break;
-	case 'x':
-		unumber = va_arg(args, unsigned int);
-		printHex(unumber, 1, size);
-		break;
-	case 'X':
-		unumber = va_arg(args, unsigned int);
-		printHex(unumber, 0, size);
-		break;
-	case 'S':
-		store = va_arg(args, char *);
-		NonPrintableChar(store, size);
-		break;
-	case 'p':
-		unumber = (unsigned int)va_arg(args, void *);
-		printPointer(unumber, size);
-		break;
-	}
+	else if (format == 'd' || format == 'i')
+		printInteger((int)args, size);
+	else if (format == 'b')
+		printBinary((unsigned int)args, size);
+	else if (format == 'o')
+		printOctal((unsigned int)args, size);
+	else if (format == 'x')
+		printHex((unsigned int)args, 1, size);
+	else if (format == 'X')
+		printHex((unsigned int)args, 0, size);
+	else if (format == 'S')
+		NonPrintableChar((char *)args, size);
+	else if (format == 'p')
+		printPointer((unsigned int)args, size);
+	else
+		_putchar(format, size);
 }

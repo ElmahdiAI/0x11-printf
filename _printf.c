@@ -2,14 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- * _printf: a function that produces output according to a format.
+ * _printf - a function that produces output according to a format.
  * @format:  is a character string. The format string is composed of
  * zero or more directives.
- * Returns: the number of characters printed.
+ * Return: the number of characters printed.
  */
 int _printf(const char *format, ...)
 {
 	int i = 0, size = 0;
+	void *arguement;
 	va_list args;
 
 	if (format == NULL)
@@ -20,7 +21,8 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			handleFormat(format[i], args, &size);
+			arguement = va_arg(args, void *);
+			handleFormat(format[i], arguement, &size);
 		}
 		else
 			_putchar(format[i], &size);
