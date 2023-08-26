@@ -36,3 +36,4 @@ int buffer(char c, int *size)
 	}
 	return (1);
 }
+

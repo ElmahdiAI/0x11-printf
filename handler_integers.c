@@ -29,3 +29,4 @@ void printInteger(int number, int *size)
 		div /= 10;
 	}
 }
+

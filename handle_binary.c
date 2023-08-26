@@ -14,3 +14,4 @@ void printBinary(unsigned int number, int *size)
 	}
 	_putchar('0' + number % 2, size);
 }
+

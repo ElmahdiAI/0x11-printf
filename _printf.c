@@ -31,3 +31,4 @@ int _printf(const char *format, ...)
 	_putchar(-1, &size);
 	return (size);
 }
+
